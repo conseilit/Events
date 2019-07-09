@@ -151,7 +151,7 @@ Set-DbaSpConfigure -SqlServer $instance -name RemoteDacConnectionsEnabled -value
 Set-DbaSpConfigure -SqlServer $instance -name OptimizeAdhocWorkloads -value 1 
 Set-DbaSpConfigure -SqlServer $instance -name CostThresholdForParallelism -value 25 
 Set-DbaSpConfigure -SqlServer $instance -name DefaultBackupCompression -value 1 
-Set-DbaSpConfigure -SqlServer $instance -name ContainmentEnabl -value 1 
+Set-DbaSpConfigure -SqlServer $instance -name ContainmentEnable -value 1 
 
 Set-DbaMaxMemory -SqlInstance $instance 
 
