@@ -21,7 +21,7 @@
 az login
 	  
 az account list 
-
+ 
 az account set --subscription "xxxxxxxxxxxxxxxxxxxxxxx"
 
 # create a resource group
