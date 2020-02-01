@@ -39,7 +39,7 @@ kubectl get namespaces
 # Create a secret to be used by SQL Server deployment
 kubectl create secret generic mssql --from-literal=SA_PASSWORD="MyC0m9l&xP@ssw0rd"  --namespace mssql-standalone
 
-# Deply a SQL Server Pod with a single YAML file containing
+# Deploy a SQL Server Pod with a single YAML file containing
 #  - Storage Class
 #  - Persistent Volume Claim
 #  - Deployment

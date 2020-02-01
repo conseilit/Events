@@ -22,7 +22,7 @@ az login
 	  
 az account list 
 
-az account set --subscription "3c4283b9-a29c-4a4d-8098-f661dd48d098"
+az account set --subscription "xxxxxxxxxxxxxxxxxxxxxxx"
 
 # create a resource group
 az group create --name sqlserver-aci --location westeurope
