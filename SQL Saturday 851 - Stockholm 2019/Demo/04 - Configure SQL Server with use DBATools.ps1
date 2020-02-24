@@ -141,21 +141,21 @@ $TempDBDataPath = split-path (Get-DbaDBFile -SqlInstance $instance -Database Tem
 
 $TempDBDataFileSizeMB = 1024 
 $TempDBDataFileCount = $(Get-DbaInstanceProperty -SqlInstance $instance  -InstanceProperty  Processors).value
-Set-DbaTempDbConfig -SqlServer $instance -DataPath $TempDBDataPath -LogPath $TempDBLogPath -DataFileSize $TempDBDataFileSizeMB -DataFileCount $TempDBDataFileCount -LogFileSize 1024 -LogFileGrowth 256
+Set-DbaTempDbConfig -SqlInstance $instance -DataPath $TempDBDataPath -LogPath $TempDBLogPath -DataFileSize $TempDBDataFileSizeMB -DataFileCount $TempDBDataFileCount -LogFileSize 1024 -LogFileGrowth 256
 
 
 
 Set-DbaErrorLogConfig -SqlInstance $instance -LogCount 99
-Set-DbaSpConfigure -SqlServer $instance -name ShowAdvancedOptions -Value 1
-Set-DbaSpConfigure -SqlServer $instance -name RemoteDacConnectionsEnabled -value 1 
-Set-DbaSpConfigure -SqlServer $instance -name OptimizeAdhocWorkloads -value 1 
-Set-DbaSpConfigure -SqlServer $instance -name CostThresholdForParallelism -value 25 
-Set-DbaSpConfigure -SqlServer $instance -name DefaultBackupCompression -value 1 
-Set-DbaSpConfigure -SqlServer $instance -name ContainmentEnable -value 1 
+Set-DbaSpConfigure -SqlInstance $instance -name ShowAdvancedOptions -Value 1
+Set-DbaSpConfigure -SqlInstance $instance -name RemoteDacConnectionsEnabled -value 1 
+Set-DbaSpConfigure -SqlInstance $instance -name OptimizeAdhocWorkloads -value 1 
+Set-DbaSpConfigure -SqlInstance $instance -name CostThresholdForParallelism -value 25 
+Set-DbaSpConfigure -SqlInstance $instance -name DefaultBackupCompression -value 1 
+Set-DbaSpConfigure -SqlInstance $instance -name ContainmentEnable -value 1 
 
 Set-DbaMaxMemory -SqlInstance $instance 
 
-# Get-DbaSpConfigure -SqlServer $instance | out-gridview
+# Get-DbaSpConfigure -SqlInstance $instance | out-gridview
 
 Stop-DbaXESession -SqlInstance $instance -Session "system_health"
 
@@ -189,7 +189,7 @@ else {
 }
 
 
-Install-DbaWhoIsActive -SqlServer $instance -Database $dbaDatabase 
+Install-DbaWhoIsActive -SqlInstance $instance -Database $dbaDatabase 
 
 #region Trace Flags
 
@@ -220,7 +220,7 @@ if ( (Get-DbaInstanceProperty -SqlInstance $instance  -InstanceProperty  Version
 
 # backup checksum default
 if ( (Get-DbaInstanceProperty -SqlInstance $instance  -InstanceProperty  VersionMajor).value -ge 12) {
-    Set-DbaSpConfigure -SqlServer $instance -name BackupChecksumFefault -value 1 
+    Set-DbaSpConfigure -SqlInstance $instance -name BackupChecksumFefault -value 1 
 }
 else {
     If ($EnableStartupTraceFlag) {
@@ -333,7 +333,7 @@ foreach ($item in $ErrorMessageList) {
 
 
 #region display configuration
-Get-DbaSpConfigure -SqlServer $instance | Select-Object DisplayName,ConfiguredValue | Sort-Object -property Displayname | Format-Table -AutoSize
+Get-DbaSpConfigure -SqlInstance $instance | Select-Object DisplayName,ConfiguredValue | Sort-Object -property Displayname | Format-Table -AutoSize
 
 Get-DbaXESession -SqlInstance  $instance | Select-Object Name,Status,AutoStart,Targets | Sort-Object -property Name | Format-Table -AutoSize
 
