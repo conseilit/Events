@@ -1,0 +1,14 @@
+FROM microsoft/mssql-server-linux
+
+ENV SA_PASSWORD=saTemp0r@ryP@ssw0rd
+ENV ACCEPT_EULA=Y
+
+COPY entrypoint.sh entrypoint.sh
+COPY sqlPostInstallStartup.sh sqlPostInstallStartup.sh
+COPY sqlPostInstallScript.sql sqlPostInstallScript.sql
+
+RUN chmod +x ./sqlPostInstallStartup.sh
+
+HEALTHCHECK --interval=5s CMD ["/opt/mssql-tools/bin/sqlcmd", "-UDockerHealthCheck", "-PDockerHealthCheck", "-Q", "select 1"]
+
+CMD /bin/bash ./entrypoint.sh $sa_password

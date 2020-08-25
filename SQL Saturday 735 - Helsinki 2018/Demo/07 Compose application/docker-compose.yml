@@ -1,0 +1,98 @@
+version: '3'
+services:
+
+  lbsqlnginx:
+    image: nginx
+    hostname: lbsqlnginx
+    container_name: lbsqlnginx    
+    depends_on:
+      - sql1
+      - sql2
+      - sql3
+      - sql4
+      - sql5
+    ports:
+      - "1433:1433"
+    volumes:
+      - /home/christophe/nginx.conf:/etc/nginx/nginx.conf:ro
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://nginx.host.com"]
+      interval: 5s
+      retries: 2 
+
+  sql1:
+    image: microsoft/mssql-server-linux
+    hostname: sql1
+    container_name: sql1
+    ports:
+      - "14331:1433"
+    environment:
+      - MSSQL_SA_PASSWORD=Password1!
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=express
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassword1!", "-Q", "select 1"]
+      interval: 5s
+      retries: 2      
+      
+
+  sql2:
+    image: microsoft/mssql-server-linux
+    hostname: sql2
+    container_name: sql2
+    ports:
+      - "14332:1433"
+    environment:
+      - MSSQL_SA_PASSWORD=Password1!
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=express
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassword1!", "-Q", "select 1"]
+      interval: 5s
+      retries: 2
+      
+  sql3:
+    image: microsoft/mssql-server-linux
+    hostname: sql3
+    container_name: sql3
+    ports:
+      - "14333:1433"
+    environment:
+      - MSSQL_SA_PASSWORD=Password1!
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=express
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassword1!", "-Q", "select 1"]
+      interval: 5s
+      retries: 2
+      
+  sql4:
+    image: microsoft/mssql-server-linux
+    hostname: sql4
+    container_name: sql4
+    ports:
+      - "14334:1433"
+    environment:
+      - MSSQL_SA_PASSWORD=Password1!
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=express
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassword1!", "-Q", "select 1"]
+      interval: 5s
+      retries: 2
+      
+  sql5:
+    image: microsoft/mssql-server-linux
+    hostname: sql5
+    container_name: sql5
+    ports:
+      - "14335:1433"
+    environment:
+      - MSSQL_SA_PASSWORD=Password1!
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=express
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-PPassword1!", "-Q", "select 1"]
+      interval: 5s
+      retries: 2
+
