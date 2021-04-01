@@ -156,9 +156,9 @@ if ($InstallDbaWhoIsActive) {
     $defaultbackuplocation = (Get-DbaDefaultPath -SqlInstance $Server).Backup
 
     if ($defaultbackuplocation -eq $((Get-DbaDefaultPath -SqlInstance $Server).Backup)){
-        Install-DbaMaintenanceSolution -SqlInstance $Server -Database $dbaDatabase -CleanupTime $CleanupTime -InstallJobs -LogToTable -ReplaceExisting    
+        Install-DbaMaintenanceSolution -SqlInstance $Server.Name -Database $dbaDatabase -CleanupTime $CleanupTime -InstallJobs -LogToTable -ReplaceExisting    
     } else {
-        Install-DbaMaintenanceSolution -SqlInstance $Server -Database $dbaDatabase -BackupLocation $defaultbackuplocation -CleanupTime $CleanupTime -InstallJobs -LogToTable -ReplaceExisting
+        Install-DbaMaintenanceSolution -SqlInstance $Server.Name -Database $dbaDatabase -BackupLocation $defaultbackuplocation -CleanupTime $CleanupTime -InstallJobs -LogToTable -ReplaceExisting
     }
 
     $tSQL = "
