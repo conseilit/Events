@@ -21,7 +21,7 @@
 
 # Script based on dbaTools commands
 # Thanks to Chrissy LeMaire (@cl | https://blog.netnerds.net/ )
-#          , Row Sewell (@SQLDBAWithBeard | https://sqldbawithabeard.com/)
+#          , Rob Sewell (@SQLDBAWithBeard | https://sqldbawithabeard.com/)
 #          , and all SQL Server community
 # http://dbatools.io
 # Install-Module dbatools 
