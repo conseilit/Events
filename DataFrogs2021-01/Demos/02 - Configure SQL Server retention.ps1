@@ -46,8 +46,8 @@ Invoke-DbaQuery -SqlInstance $Server -Database "master" -Query "
     ALTER EVENT SESSION [system_health] ON SERVER
     ADD TARGET package0.event_file
         (SET FILENAME=N'system_health.xel',
-             max_file_size=(25),
-             max_rollover_files=(20)
+             max_file_size=(100),
+             max_rollover_files=(10)
         );
     GO
     ALTER EVENT SESSION [system_health] ON SERVER
@@ -71,8 +71,8 @@ Invoke-DbaQuery -SqlInstance $Server -Database "master" -Query "
     ALTER EVENT SESSION [AlwaysOn_health] ON SERVER
     ADD TARGET package0.event_file
         (SET FILENAME=N'AlwaysOn_health.xel',
-            max_file_size=(25),
-            max_rollover_files=(20)
+            max_file_size=(100),
+            max_rollover_files=(10)
         )
 
 "
